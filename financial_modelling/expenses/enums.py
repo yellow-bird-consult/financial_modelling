@@ -17,7 +17,7 @@ class ExpenseType(Enum):
     SERVERS_AND_MAINTENANCE = "servers and maintenance"
     TAX = "tax"
     BUISNESS_INSURANCE = "business insurance"
-    CONSULTANTS_AND_PROFESSIONAL_INSURANCE = "consultants and professional insurance"
+    CONSULTANTS_AND_PROFESSIONAL_CONTRACTS = "consultants and professional contracts"
     TRAINING_AND_LEARNING = "training and learning"
     EQUIPMENT_AND_FURNITURE = "equipment and furniture"
     OFFICE_SUPPLIES = "office supplies"

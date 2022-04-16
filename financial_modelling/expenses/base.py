@@ -1,8 +1,9 @@
 """
-This file defines the base class for an expense
+This file defines the base class for an expense.
 """
-from financial_modelling.expenses.enums import ExpenseType
 from financial_modelling.collections.model_map import ModelMap
+from financial_modelling.collections.schema import SchemaDescriptor
+from financial_modelling.expenses.enums import ExpenseType
 
 
 class Expense:
@@ -17,6 +18,8 @@ class Expense:
         cost (float): the cost of one unit of this expense
         year (int): the year this expense is taking place
     """
+    SCHEMA = SchemaDescriptor()
+
     def __init__(self, name: str, amount: int, expense_type: ExpenseType, model_name: str, cost: float, year: int) -> None:
         """
         The constructor for the Expense class.
@@ -36,22 +39,15 @@ class Expense:
         self.year: int = year
 
     def add_to_model(self) -> None:
+        """
+        Adds the expense to the model that the expense is associated with.
+
+        :return: None
+        """
         model_map = ModelMap()
         model = model_map[self.model_name]
         model.add_expense(expense=self)
         model_map[self.model_name] = model
-
-    @property
-    def schema(self) -> dict:
-        # TODO => convert this into a descriptor in the collections
-        return {
-            "name": self.name,
-            "number": self.amount,
-            "type": self.expense_type,
-            "amount per item": self.cost,
-            "year": self.year,
-            "total amount": self.calculated_value
-        }
 
     @property
     def calculated_value(self) -> float:

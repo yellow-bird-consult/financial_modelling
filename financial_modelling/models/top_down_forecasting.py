@@ -1,3 +1,5 @@
+import pandas as pd
+
 from financial_modelling.collections.model_map import ModelMap
 
 
@@ -18,3 +20,17 @@ class TopDownForecastingModel:
         expense_list = self.expense_data.get(expense.expense_type, [])
         expense_list.append(expense)
         self.expense_data[expense.expense_type] = expense_list
+
+    def compile_expenses(self) -> pd.DataFrame:
+        buffer = []
+
+        for key in self.expense_data.keys():
+            buffer += [x.SCHEMA for x in self.expense_data[key]]
+        return pd.DataFrame(buffer)
+
+    def compile_income(self) -> pd.DataFrame:
+        buffer = []
+
+        for key in self.income_data.keys():
+            buffer += [x.SCHEMA for x in self.income_data[key]]
+        return pd.DataFrame(buffer)
