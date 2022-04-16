@@ -47,7 +47,7 @@ class Income:
         """
         model_map = ModelMap()
         model = model_map[self.model_name]
-        model.add_expense(expense=self)
+        model.add_income(income=self)
         model_map[self.model_name] = model
 
     @property

@@ -11,6 +11,7 @@ class LisenceAgreement(Income):
         super().__init__(name=name, amount=amount, model_name=model_name, cost=cost,
                          year=year, income_type=IncomeTypes.LICENCE_AGREEMENT)
         self.vat: Optional[Tax] = None
+        self._define_vat()
 
     def _define_vat(self) -> None:
         self.vat = Tax(name=f"VAT tax for {self.name}", amount=self.amount,

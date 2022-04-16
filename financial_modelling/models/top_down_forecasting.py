@@ -21,6 +21,11 @@ class TopDownForecastingModel:
         expense_list.append(expense)
         self.expense_data[expense.expense_type] = expense_list
 
+    def add_income(self, income: "Income") -> None:
+        income_list = self.income_data.get(income.income_type, [])
+        income_list.append(income)
+        self.income_data[income.income_type] = income_list
+
     def compile_expenses(self) -> pd.DataFrame:
         buffer = []
 
